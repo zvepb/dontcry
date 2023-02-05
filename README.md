@@ -1,2 +1,2 @@
 # dontcry
-Encryption with eel
+Encryption with eel for win
