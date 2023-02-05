@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title>IAMCRYPT</title>
+		<script src="eel.js"></script>
+	<link rel="stylesheet" href="iamcryptc.css">
+</head>
+<body>
+	<div class="form__group field">
+  		<input type="input" class="form__fielddir" placeholder="DIRECTORY" name="dir" id='dir' required />
+  			<label for="dir" class="form__labeldir">DIRECTORY</label>
+  				<input type="input" class="form__fieldpwd" placeholder="PA$$WORD" name="pwd" id='pwd' required />
+  					<label id = "pwd" for="name" class="form__labelpwd">PA$$WORD</label>
+  				<button class="form__encbutton">ENCRYPT</button>
+  			<button class="form__decbutton">DECCRYPT</button>
+  		<div class="text" id="inf"></div>
+	</div>
+	<script type="text/javascript">
+		async function iamcrypter() {
+			let dir = document.getElementById("dir").value;
+			let pwd = document.getElementById("pwd").value;
+
+			let result = await eel.crypt_disk(dir, pwd)();
+			document.getElementById("inf").innerHTML = result;
+		}
+
+		async function iamdecrypter() {
+			let dir = document.getElementById("dir").value;
+			let pwd = document.getElementById("pwd").value;
+
+			let result = await eel.decrypt_disk(dir, pwd)();
+			document.getElementById("inf").innerHTML = result;
+		}
+
+		const encbtn = document.querySelector('.form__encbutton');
+		encbtn.addEventListener('click', function () {
+			iamcrypter();
+		});
+
+		const decbtn = document.querySelector('.form__decbutton');
+		decbtn.addEventListener('click', function () {
+			iamdecrypter();
+		});
+
+		eel.expose(print_res)
+		function print_res(res) {
+			document.getElementById("inf").innerHTML = res;
+		}
+
+	</script>
+</body>
+</html>
